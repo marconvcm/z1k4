@@ -96,4 +96,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -46 )
 
 [node name="Area2" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 2, -38 )
+is_door = true
+next_scene_path = "res://Scenes/Debug.tscn"
 

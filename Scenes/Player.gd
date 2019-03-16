@@ -4,8 +4,9 @@ const SPEED = 10
 const GRAVITY = -9.6
 const FLOOR_LEVEL = Vector3(0, 1, 0)
 var direction = Vector3(0, 0, 0)
-
+var interest_point = null
 onready var Damage = preload("res://Scenes/Damage.tscn") # Will load when parsing the script.
+onready var Hud = preload("res://Scenes/InGameHud.tscn")
 
 var shoot = 1;
 var damage = null
@@ -16,7 +17,7 @@ func _ready():
 	pass
 
 func _process(delta):
-	
+
 	adjust_fire_area()
 	
 	var speed = SPEED
@@ -24,10 +25,10 @@ func _process(delta):
 	direction = Vector3(0, 0, 0)
 	
 	if Input.is_action_pressed("ui_left"):
-		_rotation += 1 * 5
+		_rotation += 1 * 2
 
 	if Input.is_action_pressed("ui_right"): 
-		_rotation -= 1 * 5
+		_rotation -= 1 * 2
 
 	if Input.is_action_pressed("ui_up"): 
 		direction.z += 1
@@ -41,6 +42,8 @@ func _process(delta):
 	if $Pointer.visible && Input.is_action_pressed("ui_accept") && shoot == 1:
 		shoot($RayCast.get_collision_point())
 	
+	interact_with_interest()
+	
 	rotate_y(_rotation * delta)
 	
 	direction = direction.normalized()
@@ -52,14 +55,17 @@ func _process(delta):
 	move_and_slide(direction * speed, FLOOR_LEVEL)
 
 func adjust_fire_area():
+	current_enemy = null
 	if $RayCast.is_colliding():
 		var node = $RayCast.get_collider()
 		if node == null: 
 			return 
 		if node.name.begins_with("Enemy"):
 			current_enemy = node
-	else:
-		current_enemy = null
+			
+func interact_with_interest():
+	if interest_point != null && Input.is_action_just_pressed("ui_accept"):
+		interest_point.inspect()
 
 func coldown():
 	shoot = 1
@@ -67,7 +73,10 @@ func coldown():
 	pass
 
 func enable_interact_with(body):
-	print(body)
+	interest_point = body
+	
+func disable_interact_with(body):
+	interest_point = null
 
 func shoot(position):
 	$Audio.play()
