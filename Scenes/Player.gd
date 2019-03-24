@@ -2,7 +2,7 @@ extends KinematicBody
 
 const SPEED = 10
 const GRAVITY = -9.6
-const FLOOR_LEVEL = Vector3(0, 1, 0)
+const FLOOR_LEVEL = Vector3(0, 2, 0)
 var direction = Vector3(0, 0, 0)
 var interest_point = null
 onready var Damage = preload("res://Scenes/Damage.tscn") # Will load when parsing the script.
