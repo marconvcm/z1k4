@@ -1,0 +1,9 @@
+[
+    {
+        "id": 1,
+        "label": "Key",
+        "information":"A game key",
+        "icon": "key",
+        "amount": 1
+    }
+]

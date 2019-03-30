@@ -1,0 +1,36 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path.s3tc="res://.import/FloorTiles.jpg-7043401827a9f9a893068e71ebfe3b45.s3tc.stex"
+path.etc2="res://.import/FloorTiles.jpg-7043401827a9f9a893068e71ebfe3b45.etc2.stex"
+metadata={
+"imported_formats": [ "s3tc", "etc2" ],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://Resources/Assets/FloorTiles.jpg"
+dest_files=[ "res://.import/FloorTiles.jpg-7043401827a9f9a893068e71ebfe3b45.s3tc.stex", "res://.import/FloorTiles.jpg-7043401827a9f9a893068e71ebfe3b45.etc2.stex" ]
+
+[params]
+
+compress/mode=2
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=true
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=1
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

@@ -14,15 +14,6 @@ extents = Vector3( 1, 1, 9.23145 )
 extents = Vector3( 1, 1, 9.08412 )
 
 [sub_resource type="GIProbeData" id=3]
-bounds = AABB( -24.9205, -14.5168, -37.1378, 49.8411, 29.0336, 74.2755 )
-cell_size = 0.580278
-to_cell_xform = Transform( 1.72331, 0, 0, 0, 1.72331, 0, 0, 0, 1.72331, 42.9459, 25.017, 64 )
-dynamic_data = PoolIntArray( 0, 8, 128, 64, 128, 1, 0, 0, 173635520, 0, 322259152, 0, 103, 3234, 0, 1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
-dynamic_range = 4
-energy = 0.0
-bias = 1.5
-normal_bias = 0.0
-propagation = 0.7
 
 [node name="World" type="Node"]
 
