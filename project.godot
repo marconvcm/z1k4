@@ -19,10 +19,14 @@ config/name="Z1K4"
 run/main_scene="res://Scenes/World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Inventory="*res://Global/Inventory.gd"
+Item="res://Global/Item.gd"
+
 [display]
 
-window/size/width=640
-window/size/height=480
+window/size/height=768
 
 [input]
 

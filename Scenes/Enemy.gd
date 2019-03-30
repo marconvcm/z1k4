@@ -16,7 +16,8 @@ func move():
 	if !stop:
 		var point = $RayCast.get_collision_point()
 		direction = player.translation - Vector3(point.x, 0, point.z) 
-		print(direction)
+	else:
+		direction = Vector3(0, 0, 0)
 
 func _on_area_body_entered(body):
 	if body.name == "Player":
@@ -35,3 +36,7 @@ func _on_attack_body_entered(body):
 func damage():
 	$Area.scale = ALERT_VIEW
 	.damage()
+
+func _on_attack_body_exited(body):
+	if body.name == "Player":
+		stop = false

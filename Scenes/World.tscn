@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Wall.tscn" type="PackedScene" id=2]
@@ -12,6 +12,17 @@ extents = Vector3( 1, 1, 9.23145 )
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 1, 1, 9.08412 )
+
+[sub_resource type="GIProbeData" id=3]
+bounds = AABB( -24.9205, -14.5168, -37.1378, 49.8411, 29.0336, 74.2755 )
+cell_size = 0.580278
+to_cell_xform = Transform( 1.72331, 0, 0, 0, 1.72331, 0, 0, 0, 1.72331, 42.9459, 25.017, 64 )
+dynamic_data = PoolIntArray( 0, 8, 128, 64, 128, 1, 0, 0, 173635520, 0, 322259152, 0, 103, 3234, 0, 1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
+dynamic_range = 4
+energy = 0.0
+bias = 1.5
+normal_bias = 0.0
+propagation = 0.7
 
 [node name="World" type="Node"]
 
@@ -28,33 +39,33 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -38 )
 
 [node name="Wall" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2, -10, 2, -8 )
+transform = Transform( 1, 0, 0, 0, 3, 0, 0, 0, 2, -10, 6, -8 )
 
 [node name="Wall2" parent="." instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, -2, 0, 1, 0, 1, 0, -8.74228e-08, -10, 2, -49 )
+transform = Transform( -4.37114e-08, 0, -2, 0, 3, 0, 1, 0, -8.74228e-08, -10, 6, -47 )
 
 [node name="Wall4" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 3, 10, 2, -18 )
+transform = Transform( 1, 0, 0, 0, 3, 0, 0, 0, 3, 10, 6, -18 )
 
 [node name="Wall3" parent="." instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2, 11 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 3, 0, 1, 0, -4.37114e-08, 0, 6, 11 )
 
 [node name="Wall5" parent="." instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, 2, -27 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 3, 0, 1, 0, -4.37114e-08, -20, 6, -27 )
 
 [node name="Wall6" parent="." instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -31, 2, -38 )
+transform = Transform( -1, 0, -1.50996e-07, 0, 3, 0, 1.50996e-07, 0, -1, -31, 6, -38 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 29.6501, 1e-06 )
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 7.58386, 1e-06 )
 
 [node name="Angle" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 7 )
 
 [node name="Camera" type="Camera" parent="Angle"]
-transform = Transform( 1, 0, 0, 0, 0.957969, 0.28687, 0, -0.28687, 0.957969, 0, 5.19319, 7.4351 )
+transform = Transform( -1, 2.9096e-08, -8.24389e-08, 0, 0.942991, 0.33282, 8.74228e-08, 0.33282, -0.942991, 0, 0.443, -36.778 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Angle"]
+[node name="Shape" type="CollisionShape" parent="Angle"]
 transform = Transform( -2.18557e-08, 4.37114e-08, 1, 0.5, -1.62921e-07, 4.37114e-08, 8.14603e-08, 1, -4.37114e-08, -1.09278e-06, -6.99999, -32 )
 shape = SubResource( 1 )
 
@@ -62,9 +73,9 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 7 )
 
 [node name="Camera" type="Camera" parent="Angle3"]
-transform = Transform( -0.0858316, 0.0151344, 0.996195, 0.000650942, 0.999885, -0.0151344, -0.996309, -0.000650546, -0.0858316, 7.96956, 3.92653, -50.0565 )
+transform = Transform( -0.108632, 0, -0.994082, 0, 1, 0, 0.994082, 0, -0.108632, -23.144, 0, -45.7518 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Angle3"]
+[node name="Shape" type="CollisionShape" parent="Angle3"]
 transform = Transform( -3.77489e-08, 1, -1.50996e-07, 0.5, 7.54979e-08, 1.62921e-07, 8.14603e-08, -1.50996e-07, -1, -14, -6.99999, -46 )
 shape = SubResource( 1 )
 
@@ -72,17 +83,13 @@ shape = SubResource( 1 )
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -18, 8, -38 )
 
 [node name="Camera" type="Camera" parent="Angle2"]
-transform = Transform( 0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 8.74214, 0, 18.2705 )
+transform = Transform( -0.944975, -0.192612, 0.264428, 0, 0.808298, 0.588773, -0.327141, 0.556376, -0.763822, 4.98697, 4.29, -10.8439 )
 
-[node name="CollisionShape2" type="CollisionShape" parent="Angle2"]
-transform = Transform( 8.14603e-08, 1, -8.74228e-08, 0.5, -1.62921e-07, 4.37114e-08, 2.18557e-08, -8.74228e-08, -1, 11, -6.99999, -18 )
-shape = SubResource( 2 )
-
-[node name="CollisionShape3" type="CollisionShape" parent="Angle2"]
+[node name="Shape" type="CollisionShape" parent="Angle2"]
 transform = Transform( 8.14603e-08, -7.54979e-08, -1, 0.5, 7.54979e-08, 1.62921e-07, 3.77489e-08, -1, 7.54979e-08, -0.999999, -6.99999, -6 )
 shape = SubResource( 2 )
 
-[node name="Enemy" parent="." instance=ExtResource( 5 )]
+[node name="Enemy4" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 5.30863e-14, 5.30863e-14, 1.62921e-07, -1, 0, 1, 1.62921e-07, -1.16088, 4.08918, -9.62653 )
 speed = 20
 
@@ -99,4 +106,34 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -46 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 2, -38 )
 is_door = true
 next_scene_path = "res://Scenes/Debug.tscn"
+
+[node name="SpotLight3" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.0141465, 0.9999, 0, -0.9999, -0.0141465, -19.4289, 15.9914, -37.8534 )
+light_energy = 1.24
+light_specular = 1.0
+spot_range = 21.8
+spot_angle = 65.2
+
+[node name="SpotLight4" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.0141465, 0.9999, 0, -0.9999, -0.0141465, 1.80657, 15.9914, -1.72548 )
+light_energy = 1.24
+light_specular = 1.0
+spot_range = 21.8
+spot_angle = 65.2
+
+[node name="SpotLight5" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.0141465, 0.9999, 0, -0.9999, -0.0141465, 1.80657, 15.9914, -30.6014 )
+light_energy = 1.24
+light_specular = 1.0
+spot_range = 21.8
+spot_angle = 65.2
+
+[node name="GIProbe" type="GIProbe" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25356, 14.035, -10.2363 )
+extents = Vector3( 24.9205, 14.5168, 37.1378 )
+energy = 0.0
+data = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 

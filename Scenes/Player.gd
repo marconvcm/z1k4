@@ -5,6 +5,9 @@ const GRAVITY = -9.6
 const FLOOR_LEVEL = Vector3(0, 2, 0)
 var direction = Vector3(0, 0, 0)
 var interest_point = null
+
+export var life = 10
+
 onready var Damage = preload("res://Scenes/Damage.tscn") # Will load when parsing the script.
 onready var Hud = preload("res://Scenes/InGameHud.tscn")
 
@@ -43,8 +46,10 @@ func _process(delta):
 		shoot($RayCast.get_collision_point())
 	
 	interact_with_interest()
-	
-	rotate_y(_rotation * delta)
+	if Input.is_action_pressed("wield"):
+		rotate_y(_rotation * 0.2 * delta)
+	else: 
+		rotate_y(_rotation * delta)
 	
 	direction = direction.normalized()
 	direction = direction.rotated(Vector3(0, 1, 0), rotation.y)
