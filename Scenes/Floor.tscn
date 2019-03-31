@@ -5,7 +5,6 @@
 [sub_resource type="CubeMesh" id=1]
 
 [sub_resource type="SpatialMaterial" id=2]
-flags_vertex_lighting = true
 albedo_texture = ExtResource( 1 )
 uv1_scale = Vector3( 10, 10, 0 )
 

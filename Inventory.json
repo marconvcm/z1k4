@@ -1,9 +1,23 @@
 [
-    {
-        "id": 1,
-        "label": "Key",
-        "information":"A game key",
-        "icon": "key",
-        "amount": 1
-    }
+{
+"id": 1,
+"label": "Key",
+"information":"A game key",
+"icon": "Item1.png",
+"amount": 1
+}, 
+{
+"id": 2,
+"label": "Battery",
+"information":"A game key",
+"icon": "Item2.png",
+"amount": 10
+}, 
+{
+"id": 3,
+"label": "Berreta 9mm",
+"information":"A game key",
+"icon": "Item3.png",
+"amount": 1
+}
 ]

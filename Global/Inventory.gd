@@ -12,3 +12,7 @@ func awake():
 	data = JSON.parse(json).result
 	file.close()
 	pass
+	
+func display():
+	
+	pass
