@@ -1,19 +1,47 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Assets/Panel.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Assets/graduate-regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Resources/Assets/PanelCondition.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Assets/PanelBgUp.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Assets/PanelInformation.png" type="Texture" id=6]
-[ext_resource path="res://Resources/Assets/PanelInventory.png" type="Texture" id=7]
-[ext_resource path="res://Resources/Assets/PanelBg.png" type="Texture" id=8]
-[ext_resource path="res://Resources/Assets/PanelSelection.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Assets/SubmenuSelected.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Assets/PanelInformation.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Assets/PanelInventory.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Assets/PanelBg.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Assets/PanelSelection.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "CommandEnter"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 860, 10 ), Vector2( 560, 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -28,6 +56,7 @@ margin_bottom = 758.0
 custom_constants/separation = 24
 
 [node name="Top" type="HBoxContainer" parent="Container"]
+editor/display_folded = true
 margin_right = 971.0
 margin_bottom = 173.0
 custom_constants/separation = 24
@@ -124,35 +153,142 @@ texture = ExtResource( 5 )
 [node name="Middle" type="HBoxContainer" parent="Container"]
 margin_top = 197.0
 margin_right = 971.0
-margin_bottom = 651.0
+margin_bottom = 653.0
 alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Container/Middle"]
 margin_right = 747.0
-margin_bottom = 454.0
+margin_bottom = 456.0
 size_flags_horizontal = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="Container/Middle/VBoxContainer"]
+[node name="ItemViewRect" type="TextureRect" parent="Container/Middle/VBoxContainer"]
 margin_right = 747.0
-margin_bottom = 268.0
-size_flags_vertical = 3
+margin_bottom = 270.0
+rect_min_size = Vector2( 500, 270 )
+size_flags_horizontal = 9
+size_flags_vertical = 9
+expand = true
 
-[node name="TextureRect" type="TextureRect" parent="Container/Middle/VBoxContainer"]
-margin_top = 272.0
-margin_right = 747.0
-margin_bottom = 454.0
+[node name="ColorRect" type="ColorRect" parent="Container/Middle/VBoxContainer/ItemViewRect"]
+visible = false
+margin_left = 560.0
+margin_top = 10.0
+margin_right = 780.003
+margin_bottom = 263.0
+color = Color( 1, 0, 0, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/Middle/VBoxContainer/ItemViewRect/ColorRect"]
+margin_left = 20.0
+margin_top = 33.0
+margin_right = 220.0
+margin_bottom = 253.0
+
+[node name="Item" type="TextureRect" parent="Container/Middle/VBoxContainer/ItemViewRect/ColorRect/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
 texture = ExtResource( 6 )
+expand = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Container/Middle/VBoxContainer/ItemViewRect/ColorRect/VBoxContainer/Item"]
+margin_top = 13.0
+margin_right = 200.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "EQUIPE"
+
+[node name="Item2" type="TextureRect" parent="Container/Middle/VBoxContainer/ItemViewRect/ColorRect/VBoxContainer"]
+margin_top = 54.0
+margin_right = 200.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 0, 50 )
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Container/Middle/VBoxContainer/ItemViewRect/ColorRect/VBoxContainer/Item2"]
+margin_top = 13.0
+margin_right = 200.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "EXAMINE"
+
+[node name="Item3" type="TextureRect" parent="Container/Middle/VBoxContainer/ItemViewRect/ColorRect/VBoxContainer"]
+margin_top = 108.0
+margin_right = 200.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 0, 50 )
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Container/Middle/VBoxContainer/ItemViewRect/ColorRect/VBoxContainer/Item3"]
+margin_top = 13.0
+margin_right = 200.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "COMBINE"
+
+[node name="Item4" type="TextureRect" parent="Container/Middle/VBoxContainer/ItemViewRect/ColorRect/VBoxContainer"]
+margin_top = 162.0
+margin_right = 200.0
+margin_bottom = 212.0
+rect_min_size = Vector2( 0, 50 )
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Container/Middle/VBoxContainer/ItemViewRect/ColorRect/VBoxContainer/Item4"]
+margin_top = 13.0
+margin_right = 200.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "EXIT
+"
+
+[node name="Animation" type="AnimationPlayer" parent="Container/Middle/VBoxContainer/ItemViewRect"]
+anims/CommandEnter = SubResource( 2 )
+
+[node name="InformationViewRect" type="TextureRect" parent="Container/Middle/VBoxContainer"]
+margin_top = 274.0
+margin_right = 747.0
+margin_bottom = 456.0
+texture = ExtResource( 7 )
+
+[node name="Label4" type="Label" parent="Container/Middle/VBoxContainer/InformationViewRect"]
+margin_left = 14.0
+margin_top = 10.0
+margin_right = 234.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "INFORMATION"
+
+[node name="Information" type="RichTextLabel" parent="Container/Middle/VBoxContainer/InformationViewRect"]
+margin_left = 20.0
+margin_top = 51.0
+margin_right = 700.0
+margin_bottom = 161.0
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+text = "This is a sample text"
 
 [node name="Inventory" type="CenterContainer" parent="Container/Middle"]
 margin_left = 751.0
 margin_right = 971.0
-margin_bottom = 454.0
+margin_bottom = 456.0
 size_flags_vertical = 3
 
 [node name="Holder" type="TextureRect" parent="Container/Middle/Inventory"]
+margin_top = 1.0
 margin_right = 220.0
-margin_bottom = 454.0
-texture = ExtResource( 7 )
+margin_bottom = 455.0
+texture = ExtResource( 8 )
 
 [node name="Grid" type="GridContainer" parent="Container/Middle/Inventory/Holder"]
 margin_left = 8.0
@@ -166,26 +302,26 @@ columns = 2
 [node name="Slot1" type="TextureRect" parent="Container/Middle/Inventory/Holder/Grid"]
 margin_right = 102.0
 margin_bottom = 102.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 stretch_mode = 5
 
-[node name="TextureRect" type="TextureRect" parent="Container/Middle/Inventory/Holder/Grid/Slot1"]
+[node name="Selector" type="TextureRect" parent="Container/Middle/Inventory/Holder/Grid/Slot1"]
 margin_right = 102.0
 margin_bottom = 102.0
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="Slot2" type="TextureRect" parent="Container/Middle/Inventory/Holder/Grid"]
 margin_left = 102.0
 margin_right = 204.0
 margin_bottom = 102.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 stretch_mode = 5
 
 [node name="Slot3" type="TextureRect" parent="Container/Middle/Inventory/Holder/Grid"]
 margin_top = 102.0
 margin_right = 102.0
 margin_bottom = 204.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 stretch_mode = 5
 
 [node name="Slot4" type="TextureRect" parent="Container/Middle/Inventory/Holder/Grid"]
@@ -193,14 +329,14 @@ margin_left = 102.0
 margin_top = 102.0
 margin_right = 204.0
 margin_bottom = 204.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 stretch_mode = 5
 
 [node name="Slot5" type="TextureRect" parent="Container/Middle/Inventory/Holder/Grid"]
 margin_top = 204.0
 margin_right = 102.0
 margin_bottom = 306.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 stretch_mode = 5
 
 [node name="Slot6" type="TextureRect" parent="Container/Middle/Inventory/Holder/Grid"]
@@ -208,14 +344,14 @@ margin_left = 102.0
 margin_top = 204.0
 margin_right = 204.0
 margin_bottom = 306.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 stretch_mode = 5
 
 [node name="Slot7" type="TextureRect" parent="Container/Middle/Inventory/Holder/Grid"]
 margin_top = 306.0
 margin_right = 102.0
 margin_bottom = 408.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 stretch_mode = 5
 
 [node name="Slot8" type="TextureRect" parent="Container/Middle/Inventory/Holder/Grid"]
@@ -223,7 +359,7 @@ margin_left = 102.0
 margin_top = 306.0
 margin_right = 204.0
 margin_bottom = 408.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 stretch_mode = 5
 
 [node name="Label3" type="Label" parent="Container/Middle/Inventory/Holder"]
@@ -235,3 +371,4 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "INVENTORY"
 align = 1
 
+[connection signal="item_selection_index_changed" from="." to="." method="_on_menu_item_selection_index_changed"]
