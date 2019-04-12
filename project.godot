@@ -22,7 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Inventory="*res://Global/Inventory.gd"
-Item="res://Global/Item.gd"
+PlayerState="*res://Global/PlayerState.gd"
 
 [display]
 

@@ -8,8 +8,9 @@ var interest_point = null
 
 export var life = 10
 
-onready var Damage = preload("res://Scenes/Damage.tscn") # Will load when parsing the script.
+onready var Damage = preload("res://Scenes/Damage.tscn")
 onready var Hud = preload("res://Scenes/InGameHud.tscn")
+onready var Menu = preload("res://Scenes/Menu.tscn")
 
 var shoot = 1;
 var damage = null
@@ -58,6 +59,15 @@ func _process(delta):
 		direction.y += GRAVITY 
 	
 	move_and_slide(direction * speed, FLOOR_LEVEL)
+	
+	
+	handle_menu()
+	
+func handle_menu():
+	if Input.is_action_just_pressed("ui_cancel"):
+		var menu = Menu.instance()
+		get_parent().add_child(menu)
+		get_tree().paused = true 
 
 func adjust_fire_area():
 	current_enemy = null

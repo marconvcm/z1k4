@@ -1,0 +1,74 @@
+
+
+[
+   {
+      "id": 1,
+      "label": "Pistol 9mm",
+      "information": "A Handgun is a firearm capable of being wielded single-handed. These relatively short and compact weapons are designed for close range combat and easy carrying. ",
+      "icon": "Item1.png",
+      "amount": 1,
+      "type": "weapon",
+      "power": 0.2,
+      "ammo_type": "pistol"
+   },
+   {
+      "id": 2,
+      "label": "Leather Jacket",
+      "information": "A leather jacket is a jacket-length coat that is usually worn on top of other apparel or item of clothing, and made from the tanned hide of various animals. ",
+      "icon": "Item2.png",
+      "amount": 1,
+      "type": "armor"
+   },
+   {
+      "id": 3,
+      "label": "Knife",
+      "information": "A fighting knife is a knife with a blade designed to most effectively inflict a lethal injury in a physical confrontation between two or more individuals at very short range (grappling distance)",
+      "icon": "Item3.png",
+      "amount": 1,
+      "type": "support"
+   },
+   {
+      "id": 4,
+      "label": "Metal key",
+      "information": "The metal key is gained during the Tourist Trap quest. It is obtained by killing the Mercenary Captain during the quest",
+      "icon": "Item4.png",
+      "amount": 1,
+      "type": "usable "
+   },
+   {
+      "id": 5,
+      "label": "Med Kit",
+      "information": "First aid kit is a collection of supplies and equipment that is used to give medical treatment. ",
+      "icon": "Item5.png",
+      "amount": 1,
+      "type": "consumable"
+   },
+   {
+      "id": 6,
+      "label": "Shotgun",
+      "information": "A shotgun is a firearm that is usually designed to be fired from the shoulder, which uses the energy of a fixed shell to fire a number of small spherical pellets called shot, or a solid projectile called a slug",
+      "icon": "Item6.png",
+      "amount": 1,
+      "type": "weapon",
+      "power": 0.8
+   },
+   {
+      "id": 7,
+      "label": "9mm",
+      "information": "The 9mm cartridge combines a flat trajectory with moderate recoil.",
+      "icon": "Item7.png",
+      "amount": 12,
+      "type": "ammo",
+      "ammo_type": "pistol"
+   },
+   {
+      "id": 8,
+      "label": "Shotgun shells",
+      "information": "A shotgun shell is a self-contained cartridge often loaded with multiple metallic \"shot\", which are small, generally spherical projectiles",
+      "icon": "Item8.png",
+      "amount": 6,
+      "type": "ammo",
+      "ammo_type": "shotgun"
+   }
+]
+

@@ -21,6 +21,7 @@ normal_bias = 0.0
 propagation = 0.7
 
 [node name="World" type="Node"]
+pause_mode = 1
 
 [node name="Floor" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.76837e-07 )
