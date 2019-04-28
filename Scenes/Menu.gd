@@ -5,6 +5,8 @@ var command_index = 0
 
 var current_item = null
 
+var in_game_menu = false
+
 onready var inventory_grid = $Container/Middle/Inventory/Holder/Grid
 onready var inventory_selector = $Container/Middle/Inventory/Holder/Grid/Slot1/Selector
 onready var information = $Container/Middle/VBoxContainer/InformationViewRect/Information
@@ -15,6 +17,7 @@ onready var support_slot = $Container/Top/Support/Slot
 onready var armor_slot = $Container/Top/Armor/Slot
 
 onready var command_menu = $Container/Middle/VBoxContainer/ItemViewRect/CommandMenu
+onready var command_menu_container = $Container/Middle/VBoxContainer/ItemViewRect/CommandMenu/VBoxContainer/
 onready var command_menu_selector = $Container/Middle/VBoxContainer/ItemViewRect/CommandMenu/VBoxContainer/Item/Selector
 onready var menu_select_sound: AudioStreamPlayer = $MenuSelect
 onready var menu_click_sound: AudioStreamPlayer = $MenuClick
@@ -38,7 +41,7 @@ func _process(delta):
 	display_command_selector()
 	display_selector()
 	
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel") && in_game_menu:
 		get_tree().paused = false
 		self.queue_free()
 
@@ -114,6 +117,7 @@ func trigger_action():
 	if Input.is_action_just_released("ui_accept"):
 		var item = PlayerState.item_at(menu_index)
 		if item == null: return 
+		refresh_command_menu(item)
 		menu_animator.play("CommandEnter")
 		current_item = item
 		menu_click_sound.play()
@@ -121,6 +125,17 @@ func trigger_action():
 		current_item = null
 		command_menu.visible = false
 		menu_cancel_sound.play()
+
+func refresh_command_menu(item):
+	var children = command_menu_container.get_children()
+	var commands = Utils.get_item_commands(item)
+	var index = 0
+	
+	for key in commands: 
+		var command_item_label: Label = children[index].get_child(0)
+		command_item_label.text = commands[key]
+		index = index + 1
+	pass
 
 func display_selector():
 	var slot: TextureRect = inventory_grid.get_children()[menu_index]
@@ -162,7 +177,7 @@ func _on_menu_item_selection_index_changed(index):
 	if item == null:
 		information.text = ""
 		return
-	information.text = item.information
+	information.text = item.label
 
 func clean_node(node: Node):
 	for child in node.get_children():

@@ -66,6 +66,7 @@ func _process(delta):
 func handle_menu():
 	if Input.is_action_just_pressed("ui_cancel"):
 		var menu = Menu.instance()
+		menu.in_game_menu = true
 		get_parent().add_child(menu)
 		get_tree().paused = true 
 

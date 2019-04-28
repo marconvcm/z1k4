@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 Inventory="*res://Global/Inventory.gd"
 PlayerState="*res://Global/PlayerState.gd"
+Utils="*res://Global/Utils.gd"
 
 [display]
 

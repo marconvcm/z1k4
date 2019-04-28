@@ -8,6 +8,7 @@ var inventory = []
 
 func _ready():
 	inventory.append(Inventory.item_at(0))
+	inventory.append(Inventory.item_at(1))
 	weapon = Inventory.item_at(2)
 	pass
 
