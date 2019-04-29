@@ -19,12 +19,6 @@ config/name="Z1K4"
 run/main_scene="res://Scenes/World.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-Inventory="*res://Global/Inventory.gd"
-PlayerState="*res://Global/PlayerState.gd"
-Utils="*res://Global/Utils.gd"
-
 [display]
 
 window/size/height=768
