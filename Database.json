@@ -7,7 +7,9 @@
       "amount": 1,
       "type": "weapon",
       "power": 0.2,
-      "ammo_type": "pistol"
+      "ammo_load": 12,
+      "ammo_max": 12,
+      "ammo_type": "pistol", 
    },
    {
       "id": 2,
@@ -64,6 +66,15 @@
       "label": "Shotgun shells",
       "information": "A shotgun shell is a self-contained cartridge often loaded with multiple metallic \"shot\", which are small, generally spherical projectiles",
       "icon": "Item8.png",
+      "amount": 6,
+      "type": "ammo",
+      "ammo_type": "shotgun"
+   },
+   {
+      "id": 9,
+      "label": "Shotgun shells",
+      "information": "A shotgun shell is a self-contained cartridge often loaded with multiple metallic \"shot\", which are small, generally spherical projectiles",
+      "icon": "Item9.png",
       "amount": 6,
       "type": "ammo",
       "ammo_type": "shotgun"

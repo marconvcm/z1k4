@@ -16,3 +16,9 @@ func item_at(index):
 	if index > (Inventory.database.size()-1) || index < 0:
 		return null
 	return Inventory.database[index]
+
+func item_by_id(id):
+	for i in database:
+		if int(i.id) == int(id): 
+			return i
+	return null

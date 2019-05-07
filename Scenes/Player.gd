@@ -59,8 +59,6 @@ func _process(delta):
 		direction.y += GRAVITY 
 	
 	move_and_slide(direction * speed, FLOOR_LEVEL)
-	
-	
 	handle_menu()
 	
 func handle_menu():
@@ -81,7 +79,15 @@ func adjust_fire_area():
 			
 func interact_with_interest():
 	if interest_point != null && Input.is_action_just_pressed("ui_accept"):
-		interest_point.inspect()
+		if interest_point.is_item:
+			take_item(interest_point.item_id)
+			interest_point.destroy()
+		else:
+			interest_point.inspect()
+
+func take_item(item_id):
+	var item = Inventory.item_by_id(item_id)
+	PlayerState.add_item(item)
 
 func coldown():
 	shoot = 1
@@ -95,6 +101,11 @@ func disable_interact_with(body):
 	interest_point = null
 
 func shoot(position):
+	if !PlayerState.can_shoot():
+		return
+	
+	PlayerState.shoot();
+	
 	$Audio.play()
 	shoot = 0;
 	damage = Damage.instance()

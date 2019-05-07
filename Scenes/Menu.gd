@@ -3,8 +3,9 @@ extends Control
 var menu_index = 0
 var command_index = 0
 
-var current_item = null
+var current_menu_state = MENU_STATE.INVENTORY_STATE 
 
+var current_item = null
 var in_game_menu = false
 
 onready var inventory_grid = $Container/Middle/Inventory/Holder/Grid
@@ -23,6 +24,14 @@ onready var menu_select_sound: AudioStreamPlayer = $MenuSelect
 onready var menu_click_sound: AudioStreamPlayer = $MenuClick
 onready var menu_cancel_sound: AudioStreamPlayer = $MenuCancel
 
+enum MENU_STATE {
+	INVENTORY_STATE,
+	COMMAND_STATE,
+	EQUIPAMENT_STATE,
+	OPTION_STATE
+}
+
+
 signal item_selection_index_changed
 
 func _ready():
@@ -31,17 +40,37 @@ func _ready():
 	display_armor()
 	display_support()
 	pass
-	
-#warning-ignore:unused_argument
+
 func _process(delta):
-	menu_selector_movement()
-	command_selector_movement()
-	trigger_action()
-	trigger_command_action()
-	display_command_selector()
-	display_selector()
 	
-	if Input.is_action_just_pressed("ui_cancel") && in_game_menu:
+	match(current_menu_state):
+		MENU_STATE.INVENTORY_STATE:
+			menu_selector_movement()
+			display_selector()
+		MENU_STATE.COMMAND_STATE:
+			command_selector_movement()
+			display_command_selector()
+
+	trigger_action()
+	trigger_cancel()
+
+func trigger_cancel():
+	if Input.is_action_just_pressed("ui_cancel"):
+		match(current_menu_state):
+			MENU_STATE.INVENTORY_STATE:
+				exit_menu()
+			MENU_STATE.COMMAND_STATE:
+				exit_command_list()
+
+func exit_command_list():
+	if current_item && !menu_animator.is_playing():
+		current_item = null
+		command_menu.visible = false
+		menu_cancel_sound.play()
+		current_menu_state = MENU_STATE.INVENTORY_STATE
+
+func exit_menu():
+	if in_game_menu:
 		get_tree().paused = false
 		self.queue_free()
 
@@ -66,8 +95,6 @@ func menu_selector_movement():
 	if next_index < 8 && next_index > -1:
 		menu_index = next_index
 		emit_signal("item_selection_index_changed", menu_index)
-		
-	
 
 func command_selector_movement():
 	if current_item != null: 
@@ -80,13 +107,14 @@ func command_selector_movement():
 			menu_select_sound.play()
 		if next_index < 4 && next_index > -1:
 			command_index = next_index
-		
 
 func display_weapon():
 	clean_node(weapon_slot)
 	if PlayerState.weapon != null && weapon_slot.get_children().size() == 0:
 		var icon = prepare_item(PlayerState.weapon, Vector2(80, 80), Vector2(25, 20))
+		var label = prepare_label(PlayerState.weapon, "ammo_load")
 		weapon_slot.add_child(icon)
+		weapon_slot.add_child(label)
 		
 func display_support():
 	clean_node(support_slot)
@@ -101,8 +129,14 @@ func display_armor():
 		armor_slot.add_child(icon)
 
 func trigger_command_action():
-	#if current_item != null:
-	pass
+	
+	if current_item != null && command_index == 0:
+		match current_item.type:
+			"weapon":
+				print(current_item.type)
+				PlayerState.equipe_weapon(current_item)
+				display_weapon()
+				exit_command_list()
 
 func display_command_selector():
 	if current_item != null: 
@@ -115,20 +149,23 @@ func display_command_selector():
 
 func trigger_action():
 	if Input.is_action_just_released("ui_accept"):
-		var item = PlayerState.item_at(menu_index)
-		if item == null: return 
-		refresh_command_menu(item)
-		menu_animator.play("CommandEnter")
-		current_item = item
-		menu_click_sound.play()
-	if Input.is_action_just_released("ui_cancel") && current_item && !menu_animator.is_playing():
-		current_item = null
-		command_menu.visible = false
-		menu_cancel_sound.play()
-
+		match(current_menu_state):
+			MENU_STATE.INVENTORY_STATE:
+				var item = PlayerState.item_at(menu_index)
+				if item == null: return 
+				refresh_command_menu(item)
+				menu_animator.play("CommandEnter")
+				current_item = item
+				menu_click_sound.play()
+				current_menu_state = MENU_STATE.COMMAND_STATE
+			MENU_STATE.COMMAND_STATE:
+				trigger_command_action()
+				pass
+	
+	
 func refresh_command_menu(item):
 	var children = command_menu_container.get_children()
-	var commands = Utils.get_item_commands(item)
+	var commands = [] #Utils.get_item_commands(item)
 	var index = 0
 	
 	for key in commands: 
@@ -152,9 +189,12 @@ func setup_inventory():
 func setup_inventory_item(item, index):
 	var holder: TextureRect = inventory_grid.get_children()[index]
 	holder.add_child(prepare_item(item))
+	if item.type == "weapon":
+		holder.add_child(prepare_label(item, 'ammo_load'))
 	if item.amount > 1:
 		holder.add_child(prepare_label(item))
-
+	
+	
 func prepare_item(item, rect_size = Vector2(80, 80), rect_position = Vector2(10,10)):
 	var icon = TextureRect.new()
 	icon.rect_size = rect_size
@@ -164,12 +204,12 @@ func prepare_item(item, rect_size = Vector2(80, 80), rect_position = Vector2(10,
 	icon.expand = true
 	return icon
 
-func prepare_label(item):
+func prepare_label(item, key = "amount", position = Vector2(0,80)):
 	var label = Label.new()
 	label.rect_size = Vector2(95,14)
-	label.rect_position = Vector2(0,80)
+	label.rect_position = position
 	label.align = Label.ALIGN_RIGHT
-	label.text = String(int(item.amount))
+	label.text = String(int(item[key]))
 	return label
 
 func _on_menu_item_selection_index_changed(index):

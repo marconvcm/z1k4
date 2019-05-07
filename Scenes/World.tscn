@@ -88,7 +88,7 @@ shape = SubResource( 1 )
 
 [node name="Enemy4" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 5.30863e-14, 5.30863e-14, 1.62921e-07, -1, 0, 1, 1.62921e-07, -1.16088, 4.08918, -9.62653 )
-speed = 20
+speed = 5
 
 [node name="Enemy2" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 5.30863e-14, 5.30863e-14, 1.62921e-07, -1, 0, 1, 1.62921e-07, -17.9334, 4.08918, -34.9325 )
@@ -113,7 +113,7 @@ spot_angle = 65.2
 
 [node name="SpotLight4" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.0141465, 0.9999, 0, -0.9999, -0.0141465, 1.80657, 15.9914, -1.72548 )
-light_energy = 1.24
+light_energy = 0.59
 light_specular = 1.0
 spot_range = 21.8
 spot_angle = 65.2
@@ -134,3 +134,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Area3" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.999907, -0.0136267, 0, 0.0136267, 0.999907, 0, 0, 0, 1, 6.50508, 2.31719, 6.1892 )
+is_item = true
+item_id = "7"
