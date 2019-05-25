@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Wall.tscn" type="PackedScene" id=2]
@@ -8,17 +8,6 @@
 [ext_resource path="res://Scenes/Interest.tscn" type="PackedScene" id=6]
 
 [sub_resource type="BoxShape" id=1]
-
-[sub_resource type="GIProbeData" id=2]
-bounds = AABB( -24.9205, -14.5168, -37.1378, 49.841, 29.0336, 74.2756 )
-cell_size = 0.580278
-to_cell_xform = Transform( 1.72331, 0, 0, 0, 1.72331, 0, 0, 0, 1.72331, 42.9458, 25.017, 64 )
-dynamic_data = PoolIntArray( 0, 8, 128, 64, 128, 1, 0, 0, 0, 1056964608, 1059760811, 1056964608, 1051372203, 1056964608, 1065353216, 1056964608, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
-dynamic_range = 4
-energy = 0.0
-bias = 1.5
-normal_bias = 0.0
-propagation = 0.7
 
 [node name="World" type="Node"]
 pause_mode = 1
@@ -103,36 +92,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -46 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 2, -38 )
 is_door = true
 next_scene_path = "res://Scenes/Debug.tscn"
-
-[node name="SpotLight3" type="SpotLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -0.0141465, 0.9999, 0, -0.9999, -0.0141465, -19.4289, 15.9914, -37.8534 )
-light_energy = 1.24
-light_specular = 1.0
-spot_range = 21.8
-spot_angle = 65.2
-
-[node name="SpotLight4" type="SpotLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -0.0141465, 0.9999, 0, -0.9999, -0.0141465, 1.80657, 15.9914, -1.72548 )
-light_energy = 0.59
-light_specular = 1.0
-spot_range = 21.8
-spot_angle = 65.2
-
-[node name="SpotLight5" type="SpotLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -0.0141465, 0.9999, 0, -0.9999, -0.0141465, 1.80657, 15.9914, -30.6014 )
-light_energy = 1.24
-light_specular = 1.0
-spot_range = 21.8
-spot_angle = 65.2
-
-[node name="GIProbe" type="GIProbe" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25356, 10.4341, -10.2363 )
-extents = Vector3( 24.9205, 14.5168, 37.1378 )
-energy = 0.0
-data = SubResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Area3" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.999907, -0.0136267, 0, 0.0136267, 0.999907, 0, 0, 0, 1, 6.50508, 2.31719, 6.1892 )
