@@ -9,7 +9,7 @@
       "power": 0.2,
       "ammo_load": 12,
       "ammo_max": 12,	
-      "ammo_type": "pistol", 
+      "ammo_type": "pistol" 
    },
    {
       "id": 2,

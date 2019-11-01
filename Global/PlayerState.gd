@@ -9,6 +9,7 @@ var inventory = []
 func _ready():
 	inventory.append(Inventory.item_at(0))
 	inventory.append(Inventory.item_at(1))
+	inventory.append(Inventory.item_at(6))
 	armor = self.item_at(1)
 	support = Inventory.item_at(8)
 	pass
@@ -27,5 +28,9 @@ func equipe_weapon(item):
 func can_shoot():
 	return weapon != null && weapon.ammo_load > 0
 
+func remove_item(item):
+	var index = inventory.find(item)
+	inventory.remove(index)
+	
 func shoot():
 	weapon.ammo_load = weapon.ammo_load - 1
